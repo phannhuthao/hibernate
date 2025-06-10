@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Giỏ hàng</title>
+</head>
+<body>
+<h2>Giỏ hàng của bạn</h2>
+<table>
+    <tr>
+        <th>Product ID</th>
+        <th>Số lượng</th>
+    </tr>
+    <tr th:each="item : ${cartList}">
+        <td th:text="${item.productId}"></td>
+        <td th:text="${item.quantity}"></td>
+    </tr>
+</table>
+<a href="/bt3">Tiếp tục mua sắm</a>
+</body>
+</html>

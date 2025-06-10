@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product List</title>
+</head>
+<body>
+<h2>Danh sách sản phẩm</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Tồn kho</th>
+        <th>Hình ảnh</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.productName}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.stock}"></td>
+        <td><img th:src="@{${product.image}}" alt="Ảnh" width="100"/></td>
+        <td>
+            <a th:href="@{'/bt3/detail/' + ${product.id}}">Mua</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Phân trang -->
+<div>
+    <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{/bt3(page=${pageNum})}"
+           th:text="${pageNum}"
+           th:style="${pageNum == currentPage ? 'font-weight:bold' : ''}">1</a>
+    </span>
+</div>
+</body>
+</html>
