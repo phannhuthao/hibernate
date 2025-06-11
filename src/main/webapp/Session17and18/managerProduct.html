@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manganer Product</title>
+</head>
+<style>
+
+</style>
+<body>
+<h2>Trang Quản Lí Sản Phẩm</h2>
+
+<form th:action="@{/admin/products}" method="get">
+    <input name="name" placeholder="Tên">
+    <input name="minPrice" placeholder="Giá từ">
+    <input name="maxPrice" placeholder="Giá đến">
+    <button>Tìm</button>
+</form>
+
+<a th:href="@{/admin/products/create}">Thêm sản phẩm</a>
+
+<table>
+    <tr th:each="p : ${products}">
+        <td th:text="${p.id}"/>
+        <td th:text="${p.productName}"/>
+        ...
+        <td><img th:src="${p.image}" width="80"/></td>
+        <td>
+            <a th:href="@{'/admin/products/edit/' + ${p.id}}">Sửa</a>
+            <a th:href="@{'/admin/products/delete/' + ${p.id}}"
+               onclick="return confirm('Xoá?')">Xoá</a>
+        </td>
+    </tr>
+</table>
+
+<div>
+  <span th:each="pg : ${#numbers.sequence(1, totalPages)}">
+    <a th:href="@{/admin/products(page=${pg})}"
+       th:text="${pg}"
+       th:style="${pg == currentPage ? 'font-weight:bold' : ''}"/>
+  </span>
+</div>
+
+</body>
+</html>

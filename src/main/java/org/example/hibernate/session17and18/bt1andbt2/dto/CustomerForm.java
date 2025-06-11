@@ -1,4 +1,4 @@
-package org.example.hibernate.session17.bt1andbt2.dto;
+package org.example.hibernate.session17and18.bt1andbt2.dto;
 
 import lombok.Data;
 

@@ -1,14 +1,15 @@
-package org.example.hibernate.session17.bt1andbt2.controller;
+package org.example.hibernate.session17and18.bt1andbt2.controller;
 
 import org.example.hibernate.ra.orm.entity.Customer;
-import org.example.hibernate.session17.bt1andbt2.dto.CustomerForm;
-import org.example.hibernate.session17.bt1andbt2.service.AuthService;
+import org.example.hibernate.session17and18.bt1andbt2.dto.CustomerForm;
+import org.example.hibernate.session17and18.bt1andbt2.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -42,8 +43,10 @@ public class AuthController {
 
     @PostMapping("/bt2")
     public String loginUser(@Valid @ModelAttribute("customerForm") CustomerForm form,
-                            BindingResult result, Model model) {
+                            BindingResult result, Model model,
+                            HttpSession session) {
         if (result.hasErrors()) {
+            model.addAttribute("customerForm", form);
             return "login";
         }
 
@@ -54,13 +57,27 @@ public class AuthController {
             return "login";
         }
 
+        session.setAttribute("loggedInUser", customer);
+
         if ("ADMIN".equalsIgnoreCase(customer.getRole())) {
-            return "admin";
+            return "redirect:/admin";
         } else if ("USER".equalsIgnoreCase(customer.getRole())) {
             return "home";
         } else {
             model.addAttribute("errorMessage", "Không xác định quyền truy cập.");
             return "login";
         }
+    }
+
+    @GetMapping("/admin")
+    public String adminDashboard(HttpSession session, Model model,
+                                 @RequestParam(required = false, defaultValue = "dashboard") String section) {
+        Customer user = (Customer) session.getAttribute("loggedInUser");
+        if (user == null || !"ADMIN".equalsIgnoreCase(user.getRole())) {
+            return "redirect:/bt2";
+        }
+
+        model.addAttribute("section", section);
+        return "admin";
     }
 }

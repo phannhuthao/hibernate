@@ -1,7 +1,7 @@
-package org.example.hibernate.session17.bt4.service;
+package org.example.hibernate.session17and18.bt4.service;
 
 import org.example.hibernate.ra.orm.entity.ProductCart;
-import org.example.hibernate.session17.bt4.dao.CartDao;
+import org.example.hibernate.session17and18.bt4.dao.CartDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package org.example.hibernate.session17.bt4.controller;
+package org.example.hibernate.session17and18.bt4.controller;
 
 import org.example.hibernate.ra.orm.entity.Product;
-import org.example.hibernate.session17.bt4.service.CartService;
-import org.example.hibernate.session17.bt3.service.ProductService;
+import org.example.hibernate.session17and18.bt4.service.CartService;
+import org.example.hibernate.session17and18.bt3.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

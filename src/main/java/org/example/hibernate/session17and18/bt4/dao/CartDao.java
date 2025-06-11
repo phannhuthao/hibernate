@@ -1,4 +1,4 @@
-package org.example.hibernate.session17.bt4.dao;
+package org.example.hibernate.session17and18.bt4.dao;
 
 import org.example.hibernate.ra.orm.entity.ProductCart;
 import org.springframework.stereotype.Repository;

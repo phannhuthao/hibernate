@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Trang Quản Lí</title>
+    <style>
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            margin: 10px 0;
+            text-decoration: none;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <h3>Quản trị</h3>
+        <a th:href="@{/admin(section='dashboard')}">📊 Thống kê</a>
+        <a th:href="@{/admin(section='products')}">📦 Quản lý sản phẩm</a>
+        <a th:href="@{/admin(section='users')}">👥 Quản lý người dùng</a>
+        <a th:href="@{/admin(section='orders')}">🧾 Quản lý đơn hàng</a>
+    </div>
+    <div class="content">
+        <div th:switch="${section}">
+            <div th:case="'dashboard'">
+                <h2>📊 Trang thống kê</h2>
+                <ul>
+                    <li>Tổng số người dùng: <strong>...</strong></li>
+                    <li>Tổng số sản phẩm: <strong>...</strong></li>
+                    <li>Tổng số đơn hàng: <strong>...</strong></li>
+                    <li>Doanh thu tháng hiện tại: <strong>...</strong></li>
+                    <li>Doanh thu năm nay: <strong>...</strong></li>
+                </ul>
+            </div>
+
+            <div th:case="'products'">
+                <h2>📦 Quản lý sản phẩm</h2>
+                <p>Hiển thị bảng sản phẩm...</p>
+            </div>
+
+            <div th:case="'users'">
+                <h2>👥 Quản lý người dùng</h2>
+                <p>Hiển thị danh sách người dùng...</p>
+            </div>
+
+            <div th:case="'orders'">
+                <h2>🧾 Quản lý đơn hàng</h2>
+                <p>Hiển thị đơn hàng...</p>
+            </div>
+
+            <div th:case="*">
+                <p>Trang không tồn tại.</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

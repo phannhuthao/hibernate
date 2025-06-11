@@ -1,8 +1,8 @@
-package org.example.hibernate.session17.bt1andbt2.service;
+package org.example.hibernate.session17and18.bt1andbt2.service;
 
 import org.example.hibernate.ra.orm.entity.Customer;
-import org.example.hibernate.session17.bt1andbt2.dao.AuthDao;
-import org.example.hibernate.session17.bt1andbt2.dto.CustomerForm;
+import org.example.hibernate.session17and18.bt1andbt2.dao.AuthDao;
+import org.example.hibernate.session17and18.bt1andbt2.dto.CustomerForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

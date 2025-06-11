@@ -1,4 +1,4 @@
-package org.example.hibernate.session17.bt1andbt2.dao;
+package org.example.hibernate.session17and18.bt1andbt2.dao;
 
 import org.example.hibernate.ra.orm.entity.Customer;
 import org.springframework.stereotype.Repository;
