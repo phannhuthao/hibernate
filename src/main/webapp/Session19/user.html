@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý người dùng</title>
+</head>
+<body>
+<h2>Trang Quản Lý Người Dùng</h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>PhoneNumber</th>
+        <th>Trạng thái</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.phoneNumber}"></td>
+        <td th:text="${user.isActive} ? 'Active' : 'Blocked'"></td>
+        <td>
+            <form th:action="@{'/user/' + ${user.id} + '/toggle'}" method="post">
+                <input type="hidden" name="activate" th:value="${!user.isActive}" />
+                <input type="hidden" name="page" th:value="${currentPage}" />
+                <button type="submit" th:text="${user.isActive} ? 'Block' : 'Open'"></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Pagination -->
+<div>
+    <span th:each="pageNum : ${#numbers.sequence(1, totalPages)}">
+        <a th:href="@{'/user?page=' + ${pageNum}}"
+           th:text="${pageNum}"
+           th:style="${pageNum == currentPage} ? 'font-weight:bold' : ''"></a>
+        &nbsp;
+    </span>
+</div>
+</body>
+</html>

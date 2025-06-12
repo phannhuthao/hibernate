@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản Lý Phim</title>
+</head>
+<body>
+<h1>Danh sách phim</h1>
+<a th:href="@{/movies/add}">Thêm Phim</a>
+<table>
+    <thead>
+    <tr>
+        <th>Tên</th>
+        <th>Đạo Diễn</th>
+        <th>Năm</th>
+        <th>Thể Loại</th>
+        <th>Trạng Thái</th>
+        <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${movies}">
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.director}"></td>
+        <td th:text="${movie.releaseYear}"></td>
+        <td th:text="${movie.genre}"></td>
+        <td th:text="${movie.status ? 'Đang chiếu' : 'Ngừng chiếu'}"></td>
+        <td>
+            <a th:href="@{'/movies/edit/' + ${movie.id}}">Sửa</a>
+            <a th:href="@{'/movies/delete/' + ${movie.id}}">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
