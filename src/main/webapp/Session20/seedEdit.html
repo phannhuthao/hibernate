@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chỉnh sửa Hạt Giống</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        img {
+            max-width: 150px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center;">Chỉnh sửa Hạt Giống</h2>
+
+<form th:action="@{/seedEdit}" method="post" enctype="multipart/form-data" th:object="${seed}">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="seedName">Tên hạt giống:</label>
+    <input type="text" id="seedName" th:field="*{seedName}" required/>
+
+    <label for="description">Mô tả:</label>
+    <textarea id="description" th:field="*{description}" rows="3" required></textarea>
+
+    <label for="price">Giá:</label>
+    <input type="number" id="price" th:field="*{price}" required/>
+
+    <label for="stock">Tồn kho:</label>
+    <input type="number" id="stock" th:field="*{stock}" required/>
+
+    <label>Ảnh hiện tại:</label>
+    <img th:src="${seed.image}" alt="Hình hiện tại"/>
+
+    <label for="imageFile">Cập nhật ảnh mới (tùy chọn):</label>
+    <input type="file" id="imageFile" name="imageFile" accept="image/*"/>
+
+    <button type="submit">Cập nhật</button>
+</form>
+
+<div class="back-link">
+    <a href="/seed">← Quay lại danh sách</a>
+</div>
+
+</body>
+</html>

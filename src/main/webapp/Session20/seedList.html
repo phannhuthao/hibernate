@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Seed</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 30px;
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #343a40;
+    }
+
+    form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+
+    form input {
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+    }
+
+    form button {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #218838;
+    }
+
+    a[href="/seedForm"] {
+        display: block;
+        margin: 0 auto 20px auto;
+        width: fit-content;
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 10px 20px;
+        border-radius: 4px;
+    }
+
+    a[href="/seedForm"]:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #343a40;
+        color: white;
+    }
+
+    td img {
+        width: 80px;
+        border-radius: 4px;
+    }
+
+    td a {
+        text-decoration: none;
+        color: #007bff;
+        margin: 0 5px;
+    }
+
+    td a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<body>
+<h2>Danh sách Hạt Giống</h2>
+
+<form method="get" action="/seed/search">
+    <input type="text" name="name" placeholder="Tìm theo tên">
+    <input type="number" name="minPrice" placeholder="Giá từ">
+    <input type="number" name="maxPrice" placeholder="Đến">
+    <button type="submit">Tìm kiếm</button>
+</form>
+
+<a href="/seedForm">Thêm Hạt Giống</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Ảnh</th>
+        <th>Tên</th>
+        <th>Mô tả</th>
+        <th>Giá</th>
+        <th>Tồn kho</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="seed : ${seeds}">
+        <td><img th:src="${seed.image}" width="100"/></td>
+        <td th:text="${seed.seedName}"></td>
+        <td th:text="${seed.description}"></td>
+        <td th:text="${seed.price}"></td>
+        <td th:text="${seed.stock}"></td>
+        <td>
+            <a th:href="@{'/seedEdit/' + ${seed.id}}">Sửa</a> |
+            <a th:href="@{'/seedDelete/' + ${seed.id}}" onclick="return confirm('Bạn chắc chắn muốn xóa?')">Xóa</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
